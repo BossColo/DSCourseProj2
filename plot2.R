@@ -12,13 +12,16 @@ if (!file.exists("summarySCC_PM25.rds") | !file.exists("Source_Classification_Co
 
 ## Read in data
 NEI <- data.table(readRDS("summarySCC_PM25.rds"))
-#SCC <- data.table(readRDS("Source_Classification_Code.rds"))
+
+## Extract just Baltimore City data
+BaltCity <- subset(NEI, fips == "24510", c("Emissions", "year"))
 
 ## Open png device
-png(filename='plot1.png')
+png(filename='plot2.png')
 
 ## Group the data by year, and calculate the totals. In the same line, plot the data, and set labels.
-plot(aggregate(Emissions ~ year, NEI, sum), type='l', pch=20, main='Total PM2.5 emissions by year', ylab='Total emissions (tons)', xlab='Year')
+plot(aggregate(Emissions ~ year, BaltCity, sum), type='l', pch=20, main='Total PM2.5 emissions in Baltimore City, Maryland by year',
+     ylab='Total emissions (tons)', xlab='Year')
 
 ## Close the graphics device and write the file.
 dev.off()

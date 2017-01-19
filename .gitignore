@@ -35,3 +35,4 @@ vignettes/*.pdf
 # Data Files
 *.zip
 *.rds
+.Rproj.user
