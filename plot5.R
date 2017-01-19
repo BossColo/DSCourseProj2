@@ -15,8 +15,8 @@ if (!file.exists('summarySCC_PM25.rds') | !file.exists('Source_Classification_Co
 }
 
 ## Read in data
-NEI <- data.table(readRDS('summarySCC_PM25.rds'))
-SCC <- data.table(readRDS('Source_Classification_Code.rds'))
+if(!exists('NEI')) NEI <- tbl_dt(readRDS('summarySCC_PM25.rds'))
+if(!exists('SCC')) SCC <- tbl_dt(readRDS('Source_Classification_Code.rds'))
 
 ## Extract just Baltimore City data
 BaltCity <- subset(NEI, fips == "24510", c('SCC', 'Emissions', 'year'))

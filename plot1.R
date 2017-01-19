@@ -1,3 +1,6 @@
+## Load library to process data
+require(dtplyr)
+
 ## Set local filename for dataset
 filename <- "PM25.zip"
 
@@ -11,8 +14,7 @@ if (!file.exists("summarySCC_PM25.rds") | !file.exists("Source_Classification_Co
 }
 
 ## Read in data
-NEI <- data.table(readRDS("summarySCC_PM25.rds"))
-#SCC <- data.table(readRDS("Source_Classification_Code.rds"))
+if(!exists('NEI')) NEI <- tbl_dt(readRDS('summarySCC_PM25.rds'))
 
 ## Open png device
 png(filename='plot1.png')

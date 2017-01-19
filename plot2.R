@@ -1,3 +1,6 @@
+## Load library to process data
+require(dtplyr)
+
 ## Set local filename for dataset
 filename <- "PM25.zip"
 
@@ -11,7 +14,7 @@ if (!file.exists("summarySCC_PM25.rds") | !file.exists("Source_Classification_Co
 }
 
 ## Read in data
-NEI <- data.table(readRDS("summarySCC_PM25.rds"))
+if(!exists('NEI')) NEI <- tbl_dt(readRDS('summarySCC_PM25.rds'))
 
 ## Extract just Baltimore City data
 BaltCity <- subset(NEI, fips == "24510", c("Emissions", "year"))
